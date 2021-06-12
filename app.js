@@ -1,3 +1,5 @@
+showNotes();
+
 textarea = document.querySelector("#textInput");
 textarea.addEventListener('input', autoResize, false);
 
@@ -40,15 +42,36 @@ function showNotes(){
         html += `
             <div class="note">
                 <div class="note-body">
-                    <h3>Note ${index}</h3>
+                    <h3>Note ${index+1}</h3>
                     <p>${element}</p>
-                    <button id="deleteNote">Delete Note</button>
+                    <button id="${index}"onclick="deleteNote(this.id)">Delete Note</button>
                 </div>
             </div>  
             `
     });
 
     let noteElement = document.getElementById("notes");
-    if(notes.length !== 0)
+    if(notesObj.length !== 0)
         noteElement.innerHTML = html;
+    else
+        noteElement.innerHTML = "Nothing to show!";
+}
+
+
+
+
+
+
+function deleteNote(index){
+    console.log("I am deleting");
+    let notes = localStorage.getItem("notes");
+    if(notes == null)
+        notesObj = [];
+    else
+        notesObj = JSON.parse(notes);
+    
+    notesObj.splice(index, 1);
+    localStorage.setItem("notes",JSON.stringify(notesObj));
+    showNotes();
+
 }
