@@ -24,7 +24,21 @@ function eventListeners() {
   document.addEventListener("DOMContentLoaded", displayNotes);
   document.getElementById("addNote").addEventListener("click", addNewNote);
 
+  // noteListDiv.addEventListener("click", function () {
+  //   this.fadeTo("slow", 0.0, function () {
+  //     noteListDiv.addEventListener("click", deleteNote);
+  //   });
+  // });
+
   noteListDiv.addEventListener("click", deleteNote);
+  // const noteItem = document.querySelector(".container .note-body");
+
+  // noteItem.fadeTo("slow", 1.0, function () {
+  //   document.querySelector(this).slideUp("slow", function () {
+  //     document.querySelector(this).deleteNote();
+  //   });
+  // });
+
   noteListDiv.addEventListener("click", editNote);
 }
 
@@ -48,6 +62,8 @@ function addNewNote() {
     localStorage.setItem("notes", JSON.stringify(notes));
     headingInput.value = "";
     textInput.value = "";
+
+    textInput.style.height = "50px";
   }
 }
 
