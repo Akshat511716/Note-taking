@@ -1,4 +1,4 @@
-// showNotes();
+// displayNotes();
 
 // Resize the textInput and the headingInput with the text
 textInput = document.querySelector("#textInput");
@@ -12,6 +12,7 @@ function autoResize() {
 }
 
 const noteListDiv = document.querySelector(".container");
+// const noteListDivEdit = document.querySelector(".container .note-body .edit-")
 let noteID = 1;
 class Note {
   constructor(id, heading, content) {
@@ -26,6 +27,7 @@ function eventListeners() {
   document.getElementById("addNote").addEventListener("click", addNewNote);
 
   noteListDiv.addEventListener("click", deleteNote);
+  noteListDiv.addEventListener("click", editNote);
 }
 
 eventListeners();
@@ -72,7 +74,7 @@ function createNote(noteItem) {
            <h3>${noteItem.heading}</h3>
                        <p>${noteItem.content}</p>
                       <button class="delete-note-btn">Delete Note</button>
-                       <button ">Edit Note</button>
+                       <button class="edit-note-btn">Edit Note</button>
                   
     `;
   noteListDiv.appendChild(div);
@@ -102,6 +104,28 @@ function deleteNote(e) {
     localStorage.setItem("notes", JSON.stringify(newNotesList));
   }
 }
+
+function editNote(e) {
+  if (e.target.classList.contains("edit-note-btn")) {
+    let divID = e.target.parentElement.dataset.id;
+    // headingInput.value = e.
+    // let element = e.target.parentElement;
+    let heading = e.target.parentElement.querySelector("h3");
+    let content = e.target.parentElement.querySelector("p");
+    // let content = e.target.parentElement.children[2];
+    // let content = e.target.parentElement.secondElementChild;
+    // console.log(content.innerHTML);
+    var topic = heading.innerHTML;
+    var text = content.innerHTML;
+    // console.log(heading.innerText);
+
+    headingInput.value = topic;
+    textInput.value = text;
+    deleteNote(e);
+    // textInput.value = toString(content.innerText);
+  }
+}
+
 // let addNote = document.querySelector("#addNote");
 // addNote.addEventListener("click", function (e) {
 //   let addText = document.querySelector("#textInput");
