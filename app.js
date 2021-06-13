@@ -67,9 +67,6 @@ function editNote(index) {
   let notes = localStorage.getItem("notes");
   if (notes == null) notesObj = [];
   else notesObj = JSON.parse(notes);
-
-  // console.log(notesObj[index])
-
   let addText = document.querySelector("#textInput");
   addText.value = notesObj[index];
 

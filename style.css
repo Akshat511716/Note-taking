@@ -3,15 +3,37 @@
 /* Variables */
 
 :root {
-    --primary-color: #FF9C5C;
+    /* --primary-color: #FF9C5C; */
+    --primary-color: #FC4A1A;
+    /* --secondary-color: #E98074; */
+    /* --primary-color: #4ABDAC; */
     --secondary-color: #fea82f;
-    --body-bg: #f0e3ca;
+    /* --body-bg: #f0e3ca; */
+    --body-bg: #EAE7DC;
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     background-color: var(--body-bg);
+    color: var(--primary-color);
+}
+
+button {
+    padding: 1rem 1.5rem;
+    font-size: 1.25rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    border: none;
+    border-radius: 40px;
+    margin: 1rem;
+}
+
+#yola {
+    font-size: 4rem;
+    font-family: 'Lato', sans-serif;
+    font-weight: 900;
+    margin: 0.5rem auto;
 }
 
 #headingInput {
@@ -44,6 +66,10 @@ body {
     outline: none;
     border-width: 0;
     border-radius: 10px;
+}
+
+#addNote {
+    background-color: var(--secondary-color);
 }
 
 .container {
@@ -93,14 +119,4 @@ body {
     .container {
         grid-template-columns: 1fr;
     }
-}
-
-.container .note-body button {
-    padding: 1rem;
-    font-size: 1.25rem;
-    font-family: 'Lato', sans-serif;
-    font-weight: 600;
-    border: none;
-    border-radius: 40px;
-    margin: 1rem;
 }
