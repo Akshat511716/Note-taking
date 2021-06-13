@@ -1,5 +1,3 @@
-// displayNotes();
-
 // Resize the textInput and the headingInput with the text
 textInput = document.querySelector("#textInput");
 headingInput = document.querySelector("#headingInput");
@@ -108,82 +106,27 @@ function deleteNote(e) {
 function editNote(e) {
   if (e.target.classList.contains("edit-note-btn")) {
     let divID = e.target.parentElement.dataset.id;
-    // headingInput.value = e.
-    // let element = e.target.parentElement;
+
     let heading = e.target.parentElement.querySelector("h3");
     let content = e.target.parentElement.querySelector("p");
-    // let content = e.target.parentElement.children[2];
-    // let content = e.target.parentElement.secondElementChild;
-    // console.log(content.innerHTML);
+
     var topic = heading.innerHTML;
     var text = content.innerHTML;
-    // console.log(heading.innerText);
 
     headingInput.value = topic;
     textInput.value = text;
-    deleteNote(e);
-    // textInput.value = toString(content.innerText);
+    editDelete(e);
   }
 }
 
-// let addNote = document.querySelector("#addNote");
-// addNote.addEventListener("click", function (e) {
-//   let addText = document.querySelector("#textInput");
-//   let notes = localStorage.getItem("notes");
-//   if (notes === null) notesObj = [];
-//   else notesObj = JSON.parse(notes);
-
-//   // addText.value.replace('/','');
-//   notesObj.push(addText.value);
-
-//   localStorage.setItem("notes", JSON.stringify(notesObj));
-
-//   addText.value = "";
-
-//   showNotes();
-// });
-
-// function showNotes() {
-//   let addText = document.querySelector("#textInput");
-//   let notes = localStorage.getItem("notes");
-//   if (notes === null) notesObj = [];
-//   else notesObj = JSON.parse(notes);
-
-//   let html = "";
-//   notesObj.reverse().forEach(function (element, index) {
-//     html += `
-//             <div class="note">
-//                  <div class="note-body">
-//                     <h3>Note ${index + 1}</h3>
-//                      <p>${element}</p>
-//                     <button id="${index}"onclick="deleteNote(this.id)">Delete Note</button>
-//                      <button id="${index}"onclick="editNote(this.id)">Edit Note</button>
-//                  </div>
-//              </div>
-//                 `;
-//   });
-//   let noteElement = document.getElementById("notes");
-//   if (notesObj.length !== 0) noteElement.innerHTML = html;
-//   else noteElement.innerHTML = "Nothing to show!";
-// }
-
-// function deleteNote(index) {
-//   // console.log("I am deleting");
-//   let notes = localStorage.getItem("notes");
-//   if (notes == null) notesObj = [];
-//   else notesObj = JSON.parse(notes);
-
-//   notesObj.splice(index, 1);
-//   localStorage.setItem("notes", JSON.stringify(notesObj));
-//   showNotes();
-// }
-
-// function editNote(index) {
-//   let notes = localStorage.getItem("notes");
-//   if (notes == null) notesObj = [];
-//   else notesObj = JSON.parse(notes);
-//   let addText = document.querySelector("#textInput");
-//   addText.value = notesObj[index];
-
-//   deleteNote(index);
-// }
+function editDelete(e) {
+  if (e.target.classList.contains("edit-note-btn")) {
+    e.target.parentElement.remove();
+    let divID = e.target.parentElement.dataset.id;
+    let notes = getDataFromStorage();
+    let newNotesList = notes.filter((item) => {
+      return item.id !== parseInt(divID);
+    });
+    localStorage.setItem("notes", JSON.stringify(newNotesList));
+  }
+}
