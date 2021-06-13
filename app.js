@@ -24,7 +24,7 @@ addNote.addEventListener('click',function(e){
     localStorage.setItem("notes", JSON.stringify(notesObj));
 
     addText.value = "";
-    console.log(notesObj);
+    // console.log(notesObj);
 
     showNotes();
 })
@@ -45,6 +45,7 @@ function showNotes(){
                     <h3>Note ${index+1}</h3>
                     <p>${element}</p>
                     <button id="${index}"onclick="deleteNote(this.id)">Delete Note</button>
+                    <button id="${index}"onclick="editNote(this.id)">Edit Note</button>
                 </div>
             </div>  
             `
@@ -63,7 +64,7 @@ function showNotes(){
 
 
 function deleteNote(index){
-    console.log("I am deleting");
+    // console.log("I am deleting");
     let notes = localStorage.getItem("notes");
     if(notes == null)
         notesObj = [];
@@ -74,4 +75,24 @@ function deleteNote(index){
     localStorage.setItem("notes",JSON.stringify(notesObj));
     showNotes();
 
+}
+
+function editNote(index){
+    let notes = localStorage.getItem("notes");
+    if(notes == null)
+        notesObj = [];
+    else
+        notesObj = JSON.parse(notes);
+
+    // console.log(notesObj[index])
+
+    let addText = document.querySelector("#textInput");
+    addText.value = notesObj[index];
+
+    deleteNote(index);
+
+    
+
+    // notesObj
+    
 }
