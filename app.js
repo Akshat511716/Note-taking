@@ -1,7 +1,10 @@
 showNotes();
 
-textarea = document.querySelector("#textInput");
-textarea.addEventListener("input", autoResize, false);
+// Resize the textInput and the headingInput with the text
+textInput = document.querySelector("#textInput");
+headingInput = document.querySelector("#headingInput");
+headingInput.addEventListener("input", autoResize, false);
+textInput.addEventListener("input", autoResize, false);
 
 function autoResize() {
   this.style.height = "auto";
@@ -21,7 +24,6 @@ addNote.addEventListener("click", function (e) {
   localStorage.setItem("notes", JSON.stringify(notesObj));
 
   addText.value = "";
-  // console.log(notesObj);
 
   showNotes();
 });
@@ -50,7 +52,6 @@ function showNotes() {
   else noteElement.innerHTML = "Nothing to show!";
 }
 
-
 function deleteNote(index) {
   // console.log("I am deleting");
   let notes = localStorage.getItem("notes");
@@ -62,19 +63,15 @@ function deleteNote(index) {
   showNotes();
 }
 
-function editNote(index){
-    let notes = localStorage.getItem("notes");
-    if(notes == null)
-        notesObj = [];
-    else
-        notesObj = JSON.parse(notes);
+function editNote(index) {
+  let notes = localStorage.getItem("notes");
+  if (notes == null) notesObj = [];
+  else notesObj = JSON.parse(notes);
 
-    // console.log(notesObj[index])
+  // console.log(notesObj[index])
 
-    let addText = document.querySelector("#textInput");
-    addText.value = notesObj[index];
+  let addText = document.querySelector("#textInput");
+  addText.value = notesObj[index];
 
-    deleteNote(index);
-
-
+  deleteNote(index);
 }
