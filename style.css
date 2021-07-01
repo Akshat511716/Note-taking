@@ -28,6 +28,7 @@ button {
     border: none;
     border-radius: 40px;
     margin: 1rem;
+    transition: background-color 0.3s ease-in-out;
 }
 
 #yola {
@@ -83,23 +84,36 @@ button {
     background-color: var(--secondary-color);
 }
 
+#addNote:hover {
+    background-color: var(--primary-color);
+    cursor: pointer;
+}
+
 .container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
+    display: flex;
+    flex-wrap: wrap;
+    /* display: grid; */
+    /* grid-template-columns: repeat(2, 1fr); */
+    /* grid-template-rows: auto; */
     justify-content: center;
     padding: 1rem;
     gap: 2rem;
+    vertical-align: top;
+    /* height: auto; */
+    /* grid-auto-rows: minmax(100px, auto); */
 }
 
 .container .note-body {
     background-color: var(--secondary-color);
     border-radius: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
     margin: 1rem;
     padding: 2rem;
-    min-width: 200px;
-    max-height: 500px;
+    /* min-width: 200px; */
+    /* grid-auto-rows: minmax(200px, auto); */
+    float: left;
+    width: 35vw;
+    height: fit-content;
     animation: fade-in 1s ease-in-out alternate;
 }
 
@@ -115,8 +129,13 @@ button {
     font-family: 'Open Sans', sans-serif;
     font-weight: 600;
     font-size: 1.25rem;
-    max-height: 140px;
+    /* max-height: 140px; */
     overflow: hidden;
+}
+
+.container .note-body button:hover {
+    cursor: pointer;
+    background-color: var(--primary-color);
 }
 
 @media only screen and (max-width: 1024px) {
